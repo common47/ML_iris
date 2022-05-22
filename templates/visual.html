@@ -9,7 +9,7 @@
     <script>
       const svgWidth = 300,
         svgHeight = 300;
-      //const data = [40, 80, 130, 210, 100, 20];
+      const data = [40, 80, 130, 210, 100, 20];
 
       const svg = d3
         .select("body")
@@ -18,7 +18,7 @@
         .attr("height", svgHeight)
         .style("border", "1px solid rgba(0,0,0,0.1)");
 
-      const padding = 30;
+      const padding = 40;
 
       // xAxis
       const xAxisScale = d3
@@ -60,5 +60,6 @@
         .attr("y", (d) => yAxisScale(d))
         .attr("fill", "orange");
     </script>
+
   </body>
 </html>
