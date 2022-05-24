@@ -47,4 +47,4 @@ def view_visual(request):
 
 def view_boxplot(request):
     data = {"dataset": PredResults.objects.all()}
-    return render(request, "boxplot2.html", data)
+    return render(request, "2.html", data)
