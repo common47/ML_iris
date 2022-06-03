@@ -20,7 +20,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wbvkntuffqdvgh3tq$gp=z_+(ot4nv=dd#mfc_0&mg)6r@93$('
+#SECRET_KEY =
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY =
+import os, json
+from django.core.exceptions import ImproperlyConfigured
+
+
+secret_file = os.path.join(BASE_DIR, 'secrets.json') # secrets.json 파일 위치를 명시
+
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
+
+def get_secret(setting, secrets=secrets):
+    """비밀 변수를 가져오거나 명시적 예외를 반환한다."""
+    try:
+        return secrets[setting]
+    except KeyError:
+        error_msg = "Set the {} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
+
+
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +66,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'predict',
+    'accounts',
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
@@ -50,7 +80,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ML_iris.urls'
+ROOT_URLCONF = 'iris_development.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +99,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ML_iris.wsgi.application'
+WSGI_APPLICATION = 'iris_development.wsgi.application'
 
 
 # Database
@@ -119,7 +149,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SITE_ID = 1

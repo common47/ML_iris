@@ -15,6 +15,9 @@
                 <th scope="col">Petal length</th>
                 <th scope="col">Petal width</th>
                 <th scope="col">Prediction</th>
+                <th scope="col">ML Algorithm</th>
+                <th scope="col">ML Parameter</th>
+                <th scope="col">user name</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,6 +29,9 @@
                     <td>{{ data.petal_length }}</td>
                     <td>{{ data.petal_width }}</td>
                     <td>{{ data.classification }}</td>
+                    <td>{{ data.ml_algorithm }}</td>
+                    <td>{{ data.ml_param}}</td>
+                    <td>{{ data.username}}</td>
                     </tr>
                 {% endfor %}
 
