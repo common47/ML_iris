@@ -80,7 +80,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'iris_development.urls'
+ROOT_URLCONF = 'ML_iris.urls'
 
 TEMPLATES = [
     {
@@ -99,7 +99,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'iris_development.wsgi.application'
+WSGI_APPLICATION = 'ML_iris.wsgi.application'
 
 
 # Database
